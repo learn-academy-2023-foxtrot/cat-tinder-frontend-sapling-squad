@@ -1,8 +1,8 @@
 import React from "react";
 
-const Plant = () => {
-
+const PlantIndex = () => {
+    return (<h2>Plant Index</h2>)
 }
 
 
-export default Plant
+export default PlantIndex
