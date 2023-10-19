@@ -1,16 +1,14 @@
 import React from "react";
-import notFound from "../assets/notfound.jpg"
+import notFound from "../assets/notfound.png"
+import "../App.css"
 
 const NotFound = () => {
     return (
         <>
             <div>
-                <img
+                <img className="error-image"
                     alt="not-found"
                     src={notFound}
-                    style={{
-                        align: "center"
-                    }}
                 />
             </div>
         </>

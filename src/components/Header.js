@@ -7,7 +7,7 @@ const Header = () => {
     return (
         <>
         <Navbar
-          className="my-2"
+          className="nav-bar"
           color="success"
         >
           <NavbarBrand href="/">
