@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import React from "react"
 import { Routes, Route } from "react-router-dom"
 import Header from "./components/Header"
 import Footer from "./components/Footer"
@@ -9,16 +9,16 @@ import PlantEdit from "./pages/PlantEdit"
 import Home from "./pages/Home"
 import NotFound from "./pages/NotFound"
 import "./App.css"
-import mockPlants from "./mockPlants.js"
+// import mockPlants from "./mockPlants.js"
 
 
 const App = () => {
-  const [plants, setPlants] = useState(mockPlants)
-  console.log(plants)
+  // const [plants, setPlants] = useState(mockPlants)
+  // console.log(plants)
 
   return (
     <>
-    <Header/>
+    <Header />
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/plants" element={<PlantIndex />} />
@@ -27,7 +27,7 @@ const App = () => {
       <Route path="/plantsEdit" element={<PlantEdit />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
-    <Footer/>
+    <Footer />
     </>
   )
 }

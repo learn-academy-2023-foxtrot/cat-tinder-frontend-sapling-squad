@@ -1,7 +1,20 @@
 import React from "react";
+import notFound from "../assets/notfound.jpg"
 
 const NotFound = () => {
-    return (<h2>Page NOt Found</h2>)
+    return (
+        <>
+            <div>
+                <img
+                    alt="not-found"
+                    src={notFound}
+                    style={{
+                        align: "center"
+                    }}
+                />
+            </div>
+        </>
+    )
 }
 
 

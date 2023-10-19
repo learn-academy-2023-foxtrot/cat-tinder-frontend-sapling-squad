@@ -1,6 +1,7 @@
 import React from "react";
 import { Navbar, NavbarBrand } from "reactstrap";
 import headerImage from "../assets/header.jpg"
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Header = () => {
     return (
@@ -8,7 +9,6 @@ const Header = () => {
         <Navbar
           className="my-2"
           color="success"
-          fixed="top"
         >
           <NavbarBrand href="/">
             <img
