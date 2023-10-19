@@ -1,70 +1,117 @@
-# Getting Started with Create React App
+- Created directories. 
+    - components
+    - pages
+    - assets
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- Created files inside the component directory
+    - Header.js 
+    - Footer.js
 
-## Available Scripts
+- Creates files inside the pages directory
+    - Home.js
+    - PlantIndex.js
+    - PlantShow.js
+    - PlantNew.js
+    - PlantEdit.js
+    - NotFound.js
 
-In the project directory, you can run:
+- We installed Reactstrap and bootstrap. Along with react router-dom
 
-### `yarn start`
+- Then we created routes for all the components inside of App.js
+```jsx
+import React, {useState} from "react"
+import { Routes, Route } from "react-router-dom"
+import Header from "./components/Header"
+import Footer from "./components/Footer"
+import PlantIndex from "./pages/PlantIndex"
+import PlantShow from "./pages/PlantShow"
+import PlantNew from "./pages/PlantNew"
+import PlantEdit from "./pages/PlantEdit"
+import Home from "./pages/Home"
+import NotFound from "./pages/NotFound"
+import "./App.css"
+import mockPlants from "./mockPlants.js"
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+const App = () => {
+  const [plants, setPlants] = useState(mockPlants)
+  console.log(plants)
 
-### `yarn test`
+  return (
+    <>
+    <Header/>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/plants" element={<PlantIndex />} />
+      <Route path="/plantsShow" element={<PlantShow />} />
+      <Route path="/plantsNew" element={<PlantNew />} />
+      <Route path="/plantsEdit" element={<PlantEdit />} />
+      <Route path="*" element={<NotFound />} />
+    </Routes>
+    <Footer/>
+    </>
+  )
+}
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+export default App;
 
-### `yarn build`
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Then we created a file in the src directory.
+    - mockPlants.js
+    - Inside of this file, we added an array of plant objects
+```jsx
+const plants = [
+    {
+        id:1,
+        name: 'Prayer Plant',
+        age: 21,
+        enjoys:'Enjoys being in direct sunlight between 60 and 72 degrees',
+         image: 'https://images.unsplash.com/photo-1637967886160-fd78dc3ce3f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fHByYXllciUyMHBsYW50c3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=400&q=60'
+    },{
+        id: 2,
+        name: 'Cactus',
+        age: 67,
+        enjoys: 'Enjoys desert temperatures of 100 degrees',
+        image: 'https://images.unsplash.com/photo-1533066636271-fdbe3e84ad80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y2FjdHVzfGVufDB8fDB8fHww&auto=format&fit=crop&w=400&q=60'
+    }
+]
+export default plants
+```
+    - We import the cat objects inside of App.js
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Now we are styling the header, footer, and not found page
+```jsx
+// Header
+import React from "react";
+import { Navbar, NavbarBrand } from "reactstrap";
+import headerImage from "../assets/header.jpg"
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+const Header = () => {
+    return (
+        <>
+        <Navbar
+          className="my-2"
+          color="success"
+    
+        >
+          <NavbarBrand href="/">
+            <img
+              alt="logo"
+              src={headerImage}
+              style={{
+                height: 100,
+                width: 80
+              }}
+            />
+            Welcome to our Garden
+          </NavbarBrand>
+        </Navbar>
+      </>
+    )
+}
+export default Header
 
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+// Footer
+```

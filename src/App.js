@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react"
+import { Routes, Route } from "react-router-dom"
+import Header from "./components/Header"
+import Footer from "./components/Footer"
+import PlantIndex from "./pages/PlantIndex"
+import PlantShow from "./pages/PlantShow"
+import PlantNew from "./pages/PlantNew"
+import PlantEdit from "./pages/PlantEdit"
+import Home from "./pages/Home"
+import NotFound from "./pages/NotFound"
+import "./App.css"
+// import mockPlants from "./mockPlants.js"
 
-function App() {
+
+const App = () => {
+  // const [plants, setPlants] = useState(mockPlants)
+  // console.log(plants)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+    <Header />
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/plants" element={<PlantIndex />} />
+      <Route path="/plantsShow" element={<PlantShow />} />
+      <Route path="/plantsNew" element={<PlantNew />} />
+      <Route path="/plantsEdit" element={<PlantEdit />} />
+      <Route path="*" element={<NotFound />} />
+    </Routes>
+    <Footer />
+    </>
+  )
 }
 
 export default App;
