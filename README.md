@@ -78,7 +78,10 @@ const plants = [
 ]
 export default plants
 ```
-    - We import the cat objects inside of App.js
+- We then import this array of objects into the App.js
+```jsx
+import mockPlants from "./mockPlants.js"
+```
 
 - Now we are styling the header, footer, and not found page
 ```jsx
@@ -151,8 +154,8 @@ const NotFound = () => {
 export default NotFound
 ```
 
-Gave the image a class name and imported App.css
-Added class to App.css
+- Gave the image a class name and imported App.css
+- Added class to App.css
 ```css
 .error-image {
   height: 700px;
@@ -162,7 +165,7 @@ Added class to App.css
 }
 ```
 
-Fixed the header by changing its class name from 'my-2' to 'nav-bar'
+- Fixed the header by changing its class name from 'my-2' to 'nav-bar'
 ```jsx
 import React from "react";
 import { Navbar, NavbarBrand } from "reactstrap";
@@ -195,7 +198,8 @@ const Header = () => {
 
 export default Header
 ```
-Created a _tests_ directory in the src directory and created a Header.test.js file:
+
+- Created a _tests_ directory in the src directory and created a Header.test.js file:
 (src/_tests_/Header.test.js)
 ```jsx
 import { render, screen } from '@testing-library/react'
@@ -239,7 +243,7 @@ describe("<Footer />", () => {
   })
 })
 ```
-Created a Home.test.js file in the _tests_ directory:
+- Created a Home.test.js file in the _tests_ directory:
 (src/_tests_/Home.test.js)
 ```jsx
 import { render, screen } from '@testing-library/react';
@@ -263,7 +267,7 @@ describe("<Home />", () => {
 })
 ```
 
-Created a NotFound.test.js file in the _tests_ directory:
+- Created a NotFound.test.js file in the _tests_ directory:
 (src/_tests_/NotFound.test.js)
 ```jsx
 import { render, screen } from '@testing-library/react';
@@ -287,5 +291,100 @@ describe("<NotFound />", () => {
   })
 })
 ```
-Changed Not found className from 'error-image' to 'not-found-image' in App.css and in NotFound.js.
+- Changed Not found className from 'error-image' to 'not-found-image' in App.css and in NotFound.js.
 
+- NOTE: Make sure when creating mockData your add in the primary keys!! The id: integer!!
+```jsx
+const plants = [
+    {
+        id:1,
+        name: 'Prayer Plant',
+        age: 21,
+        enjoys:'Enjoys being in direct sunlight between 60 and 72 degrees',
+         image: 'https://images.unsplash.com/photo-1637967886160-fd78dc3ce3f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fHByYXllciUyMHBsYW50c3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=400&q=60'
+    },{
+        id: 2,
+        name: 'Cactus',
+        age: 67,
+        enjoys: 'Enjoys desert temperatures of 100 degrees',
+        image: 'https://images.unsplash.com/photo-1533066636271-fdbe3e84ad80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y2FjdHVzfGVufDB8fDB8fHww&auto=format&fit=crop&w=400&q=60'
+    }
+]
+export default plants
+```
+
+- We started working on the read functionality to have stuff on the pages. We know we have to pass data from on page to another, so we used props inside of App.js to have it transfered onto PlantIndex.js
+```jsx
+import mockPlants from "./mockPlants.js"
+
+const App = () => {
+  const [plants, setPlants] = useState(mockPlants)
+  console.log("plants",plants)
+
+  return (
+    <>
+      <Route path="/plants" element={<PlantIndex  plants={plants} />}/>
+    </>
+  )
+}
+```
+- We got card from: https://reactstrap.github.io/?path=/docs/components-card--card
+
+- Then we brought the props in from App.js to PlantIndex.js and created to card to store the plants information. This will display on the the page when you have this in the url: http://localhost:3000/plants
+```jsx 
+import React from "react";
+import { NavLink } from "react-router-dom";
+import { Card, CardBody, CardSubtitle, CardTitle, Button } from "reactstrap"
+
+const PlantIndex = ({ plants }) => {
+    return (
+        <>
+            <h2>Plant Index</h2>           
+        <main className="card"> 
+            {plants?.map((plant, index) => {
+                return (
+                    <div key={index}>
+                        <Card
+                            style={{
+                                width: '18rem'
+                            }}
+                        >
+                        <img
+                            alt={`profile picture for ${plant.name}`}
+                            src={plant.image}
+                        />
+                        <CardBody>
+                            <CardTitle tag="h5">
+                                {plant.name}
+                            </CardTitle>
+                            <CardSubtitle
+                                className="mb-2 text-muted"
+                                 tag="h6"
+                            >
+                                {plant.age}
+                            </CardSubtitle>
+                            <Button>
+                                <NavLink to={`/plantshow/${plant.id}`} className="nav-link">
+                                    Click to view more
+                                </NavLink>
+                            </Button>
+                        </CardBody>
+                        </Card>
+                    </div>
+                )
+            })}
+        </main>
+    </>
+    )
+}
+
+export default PlantIndex
+```
+- We had a blocker where the card was not showing up on the page, to solve that we looked back at the App.js. Instead of it being written like this: 
+```jsx
+<Route path="/plants" element={<PlantIndex />} plants={plants} />
+```
+- It should be like: 
+```jsx 
+<Route path="/plants" element={<PlantIndex plants={plants}/>} />
+```
