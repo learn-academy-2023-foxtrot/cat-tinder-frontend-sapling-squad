@@ -114,4 +114,178 @@ const Header = () => {
 export default Header
 
 // Footer
+import React from "react";
+import { Navbar } from "reactstrap";
+
+const Footer = () => {
+    return (
+        <>
+            <Navbar fixed="bottom" color="success">
+                <p> &copy; 2023 Shaun and Ilene aka The Sapling Squad</p>
+            </Navbar>
+        </>
+    )
+}
+
+export default Footer
+
+// We worked on the NotFound page. 
+import React from "react";
+import notFound from "../assets/notfound.png"
+import "../App.css"
+
+const NotFound = () => {
+    return (
+        <>
+            <div>
+                <img className="error-image"
+                    alt="not-found"
+                    src={notFound}
+                />
+            </div>
+        </>
+    )
+}
+
+
+export default NotFound
 ```
+
+Gave the image a class name and imported App.css
+Added class to App.css
+```css
+.error-image {
+  height: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+```
+
+Fixed the header by changing its class name from 'my-2' to 'nav-bar'
+```jsx
+import React from "react";
+import { Navbar, NavbarBrand } from "reactstrap";
+import headerImage from "../assets/header.jpg"
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+const Header = () => {
+    return (
+        <>
+        <Navbar
+          className="nav-bar"
+          color="success"
+        >
+          <NavbarBrand href="/">
+            <img
+              alt="logo"
+              src={headerImage}
+              style={{
+                height: 100,
+                width: 80
+              }}
+            />
+            Welcome to our Garden
+          </NavbarBrand>
+        </Navbar>
+      </>
+    )
+}
+
+
+export default Header
+```
+Created a _tests_ directory in the src directory and created a Header.test.js file:
+(src/_tests_/Header.test.js)
+```jsx
+import { render, screen } from '@testing-library/react'
+import { BrowserRouter } from 'react-router-dom'
+import Header from '../components/Header'
+
+describe("<Header />", () => {
+    it("renders a greeting to our garden", () => {
+        render(
+            <BrowserRouter>
+                <Header />
+            </BrowserRouter>
+        )
+        const greetingLink = screen.getByRole("link", { name: /FloraFinder/i })
+        expect(greetingLink).toBeInTheDocument()
+    })
+})
+```
+Created a Footer.test.js file in the _tests_ directory:
+(src/_tests_/Footer.test.js)
+```jsx
+import { render, screen } from '@testing-library/react';
+import { BrowserRouter } from 'react-router-dom';
+import Footer from "../components/Footer"
+
+describe("<Footer />", () => {
+  it("renders a copyright", () => {
+   
+    render(
+      <BrowserRouter>
+        <Footer />
+      </BrowserRouter>
+    )
+
+    screen.debug() 
+    screen.logTestingPlaygroundURL() 
+
+    const copyRight = screen.getByText(/2023 Shaun and Ilene/i)
+
+    expect(copyRight).toBeInTheDocument()
+  })
+})
+```
+Created a Home.test.js file in the _tests_ directory:
+(src/_tests_/Home.test.js)
+```jsx
+import { render, screen } from '@testing-library/react';
+import { BrowserRouter } from 'react-router-dom';
+import Home from "../pages/Home"
+
+describe("<Home />", () => {
+    it("renders a description of our garden", () => {
+        render(
+            <BrowserRouter>
+                <Home />
+            </BrowserRouter>
+        )
+        screen.logTestingPlaygroundURL()
+
+        const homeHeading = screen.getByRole("heading", {
+            name: "Welcome to our Garden!"
+        })
+        expect(homeHeading).toBeInTheDocument()
+    })
+})
+```
+
+Created a NotFound.test.js file in the _tests_ directory:
+(src/_tests_/NotFound.test.js)
+```jsx
+import { render, screen } from '@testing-library/react';
+import { BrowserRouter } from 'react-router-dom';
+import NotFound from "../pages/NotFound"
+
+describe("<NotFound />", () => {
+  it("renders an image on the NotFound page", () => {
+    render(
+      <BrowserRouter>
+        <NotFound />
+      </BrowserRouter>
+    )
+
+    screen.debug() 
+    screen.logTestingPlaygroundURL() 
+
+    const notFoundImage = screen.getByTestId("not-found-test")
+   
+    expect(notFoundImage).toBeInTheDocument()
+  })
+})
+```
+Changed Not found className from 'error-image' to 'not-found-image' in App.css and in NotFound.js.
+

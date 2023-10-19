@@ -6,9 +6,10 @@ const NotFound = () => {
     return (
         <>
             <div>
-                <img className="error-image"
+                <img className="not-found-image"
                     alt="not-found"
                     src={notFound}
+                    data-testid="not-found-test"
                 />
             </div>
         </>

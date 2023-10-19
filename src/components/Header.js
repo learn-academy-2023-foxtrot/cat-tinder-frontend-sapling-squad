@@ -19,7 +19,7 @@ const Header = () => {
                 width: 80
               }}
             />
-            Welcome to our Garden
+            FloraFinder
           </NavbarBrand>
         </Navbar>
       </>
