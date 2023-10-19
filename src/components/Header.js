@@ -16,10 +16,10 @@ const Header = () => {
               src={headerImage}
               style={{
                 height: 100,
-                width: 80
+                width: 100
               }}
             />
-            FloraFinder
+          FloraFinder
           </NavbarBrand>
         </Navbar>
       </>
