@@ -9,7 +9,7 @@ const PlantIndex = ({ plants }) => {
         <main className="card-container"> 
             {plants?.map((plant, index) => {
                 return (
-                    <div key={index}>
+                    <div key={index} className="card">
                         <Card
                             style={{
                                 width: '18rem'
