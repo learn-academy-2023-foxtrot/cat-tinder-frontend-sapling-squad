@@ -11,7 +11,7 @@ describe("PlantIndex", () => {
             </BrowserRouter>
         )
         mockPlants.forEach((plant) => {
-            const altTxt = screen.getByAltText(/profile picture for/i)
+            const altTxt = screen.getAllByAltText(/profile picture for/i)
             screen.debug(altTxt[0])
             expect(altTxt[0]).toBeInTheDocument()
             

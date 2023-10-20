@@ -16,6 +16,10 @@ const App = () => {
   const [plants, setPlants] = useState(mockPlants)
   console.log("plants",plants)
 
+  const createPlant = (newPlant) => {
+    console.log("Plant has been created", newPlant)
+  }
+
   return (
     <>
     <Header />
@@ -23,7 +27,7 @@ const App = () => {
       <Route path="/" element={<Home />} />
       <Route path="/plants" element={<PlantIndex  plants={plants} />}/>
       <Route path="/plantsShow/:id" element={<PlantShow plants={plants} />}/>
-      <Route path="/plantsNew" element={<PlantNew />} />
+      <Route path="/plantsNew" element={<PlantNew createPlant={createPlant}/>} />
       <Route path="/plantsEdit" element={<PlantEdit />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
