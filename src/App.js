@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { Routes, Route } from "react-router-dom"
 import Header from "./components/Header"
 import Footer from "./components/Footer"
@@ -13,12 +13,29 @@ import mockPlants from "./mockPlants.js"
 
 
 const App = () => {
-  const [plants, setPlants] = useState(mockPlants)
-  console.log("plants",plants)
-
-  const createPlant = (newPlant) => {
-    console.log("Plant has been created", newPlant)
+  const [plants, setPlants] = useState([])
+  
+  useEffect(() => {
+    readPlant()
+  }, [])
+  const readPlant = () => {
+    fetch("http://localhost:3000/plants")
+      .then((response) => response.json())
+      .then((payload) => setPlants(payload)) 
+      .catch((error) => console.log(error))
   }
+const createPlant = (plant) => {
+  fetch("http://localhost:3000/plants", {
+  body: JSON.stringify(plant),
+  headers: {
+    "Content-Type": "application/json"
+  },
+  method: "POST"
+})  
+  .then((response) => response.json())
+  .then(() => readPlant())
+  .catch((errors) => console.log("Plant create errors", errors))
+}
 
   return (
     <>

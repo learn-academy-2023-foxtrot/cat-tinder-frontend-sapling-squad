@@ -591,4 +591,34 @@ export default PlantNew
 
 - Now we wait until we can combine react and rails. The code above will only store the new plant inside of the state, it is not inside of the data. That means it will not show up the page it only redirects it. 
 
-- 
+### Fetch 
+
+- We added fetch to our App.js file for read functionality:
+
+```jsx
+ useEffect(() => {
+    readPlant()
+  }, [])
+  const readPlant = () => {
+    fetch("http://localhost:3000/plants")
+      .then((response) => response.json())
+      .then((payload) => setPlants(payload)) 
+      .catch((error) => console.log(error))
+  }
+```
+We added fetch for create functionality in our App.js:
+
+```jsx
+const createPlant = (plant) => {
+  fetch("http://localhost:3000/plants", {
+  body: JSON.stringify(plant),
+  headers: {
+    "Content-Type": "application/json"
+  },
+  method: "POST"
+})  
+  .then((response) => response.json())
+  .then(() => readPlant())
+  .catch((errors) => console.log("Plant create errors", errors))
+}
+```
