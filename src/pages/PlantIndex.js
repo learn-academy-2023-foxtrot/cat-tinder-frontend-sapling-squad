@@ -6,7 +6,7 @@ const PlantIndex = ({ plants }) => {
     return (
         <>
             <h2>Plant Index</h2>           
-        <main className="card"> 
+        <main className="card-container"> 
             {plants?.map((plant, index) => {
                 return (
                     <div key={index}>
@@ -30,7 +30,7 @@ const PlantIndex = ({ plants }) => {
                                 {plant.age}
                             </CardSubtitle>
                             <Button>
-                                <NavLink to={`/plantshow/${plant.id}`} className="nav-link">
+                                <NavLink to={`/plantsShow/${plant.id}`} className="nav-link">
                                     Click to view more
                                 </NavLink>
                             </Button>

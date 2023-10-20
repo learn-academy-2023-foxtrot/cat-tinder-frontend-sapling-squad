@@ -388,3 +388,129 @@ export default PlantIndex
 ```jsx 
 <Route path="/plants" element={<PlantIndex plants={plants}/>} />
 ```
+
+Added a PlantIndex.test.js file:
+(src/_tests_/PlantIndex.test.js)
+```jsx
+import { render, screen } from "@testing-library/react"
+import { BrowserRouter } from "react-router-dom"
+import PlantIndex from "../pages/PlantIndex"
+import mockPlants from "../mockPlants"
+
+describe("PlantIndex", () => {
+    it("has an image", () => {
+        render(
+            <BrowserRouter>
+                <PlantIndex plants={mockPlants} />
+            </BrowserRouter>
+        )
+        mockPlants.forEach((plant) => {
+            const altTxt = screen.getByAltText(/profile picture for/i)
+            screen.debug(altTxt[0])
+            expect(altTxt[0]).toBeInTheDocument()
+            
+            const plantImage = screen.getByRole('img', { name: /profile picture for Prayer Plant/i })
+
+            expect(plantImage).toHaveAttribute('src', 'https://images.unsplash.com/photo-1637967886160-fd78dc3ce3f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fHByYXllciUyMHBsYW50c3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=400&q=60')
+            expect(plantImage).toHaveAttribute('alt', 'profile picture for Prayer Plant')
+        })
+    })
+})
+```
+
+Added a PlantShow.test.js file:
+(src/_tests_/PlantShow.test.js)
+```jsx
+import { render, screen } from "@testing-library/react"
+import { MemoryRouter, Routes, Route } from "react-router-dom"
+import PlantShow from "../pages/PlantShow"
+import mockPlants from "../mockPlants"
+
+describe('<PlantShow />', () => {
+    it('renders a name', () => {
+        render(
+            <MemoryRouter initialEntries={["/plantshow/1"]}>
+                <Routes>
+                    <Route path="/plantshow/:id" element={<PlantShow plants={mockPlants} />} />
+                </Routes>
+            </MemoryRouter>
+        )
+        screen.logTestingPlaygroundURL()
+        const plantName = screen.getByRole("headiing", {
+            name: /PlantShow page/i
+        })
+        expect(plantName).toHaveTextContent("PlantShow page")
+    })
+})
+```
+
+Added PlantShow functionality:
+(src/pages/PlantShow.js)
+```jsx
+import React from "react"
+import { useParams, NavLink } from "react-router-dom"
+import { Card, CardBody, CardSubtitle, CardTitle, CardText, Button } from "reactstrap"
+
+
+const PlantShow = ({plants}) => {
+    const { id } = useParams()
+    let currentPlant = plants?.find((plant) => plant.id === +id)
+    return (
+    <>    
+    <h2>About {currentPlant.name}</h2>
+    <main className="card">
+        {currentPlant && (
+    <Card
+        style={{
+          width: '18rem'
+        }}
+      >
+        <img
+          alt="plant profile picture"
+          src={currentPlant.image}
+        />
+        <CardBody>
+          <CardTitle tag="h5">
+            Plant: {currentPlant.name}
+          </CardTitle>
+          <CardSubtitle
+            className="mb-2 text-muted"
+            tag="h6"
+          >
+            {currentPlant.age}
+          </CardSubtitle>
+          <CardText>
+            {currentPlant.enjoys}
+          </CardText>
+          <Button>
+             <NavLink to={'/plants'} className="nav-link">
+                Go Back
+            </NavLink>
+            </Button>
+        </CardBody>
+      </Card>
+        )
+    }
+      </main>
+      </>
+      )
+}
+
+
+export default PlantShow
+```
+
+Added props to App.js:
+```jsx
+<Route path="/plantsShow/:id" element={<PlantShow plants={plants} />}/>
+```
+
+Added some to App.css file:
+
+```css
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  }
+```
