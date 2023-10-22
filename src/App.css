@@ -5,13 +5,53 @@
   display: block;
 }
 
+/* Home Page Styling */
+.home-container{
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.intro-sentence{
+  margin-top: 50px;
+}
+
+.logo-button{
+  display: grid;
+}
+
+.home-logo{
+  height: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.view-plants{
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.button-text{
+  text-decoration: none;
+  color: black;
+}
+
+/* Plant Index Styling */
+.index-title{
+  text-align: center;
+}
+
 .card-container {
+  margin-bottom: 60px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  margin-top: 20px;
+  text-align: center;
 }
 
 .card{
+  margin-top: 20px;
+}
+
+#card{
   margin: auto;
 }

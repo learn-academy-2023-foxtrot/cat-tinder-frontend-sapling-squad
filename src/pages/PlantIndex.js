@@ -5,12 +5,12 @@ import { Card, CardBody, CardSubtitle, CardTitle, Button } from "reactstrap"
 const PlantIndex = ({ plants }) => {
     return (
         <>
-            <h2>Plant Index</h2>           
-        <main className="card-container"> 
+            <h2 className="index-title">Plants</h2>           
+        <main id="main" className="card-container"> 
             {plants?.map((plant, index) => {
                 return (
                     <div key={index} className="card">
-                        <Card
+                        <Card id="card"
                             style={{
                                 width: '18rem'
                             }}
@@ -19,7 +19,7 @@ const PlantIndex = ({ plants }) => {
                             alt={`profile picture for ${plant.name}`}
                             src={plant.image}
                         />
-                        <CardBody>
+                        <CardBody id="card-body">
                             <CardTitle tag="h5">
                                 {plant.name}
                             </CardTitle>
