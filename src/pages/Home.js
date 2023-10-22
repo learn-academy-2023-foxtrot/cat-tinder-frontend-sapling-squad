@@ -1,6 +1,7 @@
 import React from "react"
 import { NavLink } from "react-router-dom"
 import Logo from "../assets/plantfinderlogo.jpeg"
+import { Button } from "reactstrap"
 
 const Home = () => {
     return (
@@ -16,6 +17,11 @@ const Home = () => {
                         View Plants
                     </NavLink>
                 </button>
+                <Button className="add-plant">
+                    <NavLink to="./plantsnew" className="button-text">
+                        Add a Plant
+                    </NavLink>
+                </Button>
             </div>
         </div>
         </body>
