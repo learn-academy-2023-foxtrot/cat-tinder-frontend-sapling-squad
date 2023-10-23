@@ -24,8 +24,8 @@ const PlantNew = ({createPlant}) => {
 
 return (
     <>
-        <h2>Add a Plant</h2>
-        <Form>
+        <h2 className="add-a-plant">Add a Plant</h2>
+        <Form className="new-plant-form">
             <FormGroup>
                 <Label for="name">
                     Name

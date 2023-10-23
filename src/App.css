@@ -5,13 +5,86 @@
   display: block;
 }
 
+/* Home Page Styling */
+.home-container{
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.intro-sentence{
+  margin-top: 50px;
+}
+
+.logo-button{
+  display: grid;
+}
+
+.home-logo{
+  height: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.view-plants{
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.button-text{
+  text-decoration: none;
+  color: black;
+}
+
+.add-plant{
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+}
+
+/* Plant Index Styling */
+.index-title{
+  text-align: center;
+}
+
 .card-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  margin-top: 20px;
+  margin-bottom: 60px;
+  text-align: center;
 }
 
 .card{
+  margin-top: 20px;
+}
+
+#card{
   margin: auto;
+}
+
+/* Plant New Styling */
+.add-a-plant {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.new-plant-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+}
+
+/* Plant Show Styling */
+.show-title{
+  text-align: center;
+}
+
+.card{
+  border-style: none;
+}
+
+.card-body{
+  border: 2px solid;
+  border-color: green;
 }

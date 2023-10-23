@@ -9,7 +9,7 @@ import PlantEdit from "./pages/PlantEdit"
 import Home from "./pages/Home"
 import NotFound from "./pages/NotFound"
 import "./App.css"
-import mockPlants from "./mockPlants.js"
+// import mockPlants from "./mockPlants.js"
 
 
 const App = () => {
