@@ -622,3 +622,82 @@ const createPlant = (plant) => {
   .catch((errors) => console.log("Plant create errors", errors))
 }
 ```
+
+Worked on styling for home, index, show, and create page. Now working on the updating functionality. Already did the backend part now for the frontend parts.
+
+```jsx
+// This path is from: src/pages/plantsEdit/:id
+import React, { useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { Form, FormGroup, Label, Input, Button } from "reactstrap"
+
+const PlantEdit = ( {plants, updatePlant} ) => {
+    const { id } = useParams()
+    let currentPlant = plants?.find((plant) => plant.id === +id)
+
+    const [editPlant, setEditPlant] = useState({
+        name: currentPlant.name,
+        age: currentPlant.age,
+        enjoys: currentPlant.enjoys,
+        image: currentPlant.image
+    })
+    console.log("edit plant", editPlant)
+
+    const handleChange = (e) => {
+        setEditPlant({ ...editPlant, [e.target.name]: e.target.value })
+    }
+
+    const navigate = useNavigate()
+    const handleSubmit = () => {
+        updatePlant(editPlant, currentPlant.id)
+        navigate("/plants")
+    }
+
+    return (
+       <>
+        <Form>
+            <FormGroup>
+                <Label for="name">Name</Label>
+                <Input type="text" name="name" value={editPlant.name} onChange={handleChange}/>
+            </FormGroup>
+            <FormGroup>
+                <Label for="age">Age</Label>
+                <Input type="number" name="age" value={editPlant.age} onChange={handleChange}/>
+            </FormGroup>
+            <FormGroup>
+                <Label for="enjoys">Enjoys</Label>
+                <Input type="text" name="enjoys" value={editPlant.enjoys} onChange={handleChange}/>
+            </FormGroup>
+            <FormGroup>
+                <Label for="image">Image URL</Label>
+                <Input type="text" name="image" value={editPlant.image} onChange={handleChange}/>
+            </FormGroup>
+        </Form>
+        <Button onClick={handleSubmit} name="submit">
+            Submit Updated Plant
+        </Button>
+       </>
+    )
+}
+
+export default PlantEdit
+
+// We had to pass props from the App.js. This is also fetching from the backend.
+const updatePlant = (plant, id) => {
+  fetch(`http://localhost:3000/plants/${id}` , {
+    body: JSON.stringify(plant),
+    headers: {
+      "Content-Type": "application/json"
+  },
+  method: "PATCH"
+  })
+    .then((response) => response.json())
+    .then(() => readPlant())
+    .catch((errors) => console.log("Plant update errors:", errors))
+}
+
+<Route path="/plantsEdit/:id" element={<PlantEdit plants={plants} updatePlant={updatePlant}/>} />
+```
+
+The PlantEdit.js now needs testing on it's page.
+

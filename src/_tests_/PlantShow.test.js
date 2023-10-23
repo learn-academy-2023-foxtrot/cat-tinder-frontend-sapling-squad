@@ -13,9 +13,9 @@ describe('<PlantShow />', () => {
             </MemoryRouter>
         )
         screen.logTestingPlaygroundURL()
-        const plantName = screen.getByRole("headiing", {
-            name: /PlantShow page/i
+        const plantName = screen.getByRole("heading", {
+            name: /About/i
         })
-        expect(plantName).toHaveTextContent("PlantShow page")
+        expect(plantName).toHaveTextContent(`About`)
     })
 })

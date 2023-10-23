@@ -3,7 +3,7 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 
 describe("<App />", () => {
-  it("renders a greeting to the Flow Master space", () => {
+  it("renders a greeting to the Garden", () => {
    
     render(
       <BrowserRouter>
@@ -12,7 +12,7 @@ describe("<App />", () => {
     )
 
     const greeting = screen.getByRole("heading", {
-      name: /Your future plant partner is just a swipe away/i
+      name: /Hello, soil searchers/i
     })
     
     expect(greeting).toBeInTheDocument()

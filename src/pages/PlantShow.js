@@ -1,5 +1,5 @@
 import React from "react"
-import { useParams, NavLink } from "react-router-dom"
+import { useParams, NavLink} from "react-router-dom"
 import { Card, CardBody, CardSubtitle, CardTitle, CardText, Button } from "reactstrap"
 import NotFound from "./NotFound"
 
@@ -7,6 +7,7 @@ import NotFound from "./NotFound"
 const PlantShow = ({plants}) => {
     const { id } = useParams()
     let currentPlant = plants?.find((plant) => plant.id === +id)
+
     return (
       <>    
         {currentPlant ? (
@@ -35,11 +36,18 @@ const PlantShow = ({plants}) => {
             <CardText>
               {currentPlant.enjoys}
             </CardText>
-            <Button>
-              <NavLink to={'/plants'} className="nav-link">
-                  Go Back
-              </NavLink>
-              </Button>
+            <div>
+                <Button className="edit-button">
+                  <NavLink to={`/plantsEdit/${currentPlant.id}`} className="edit-button-text">
+                    Edit Plant Profile
+                  </NavLink>
+                </Button>
+              <Button>
+                <NavLink to={'/plants'} className="nav-link">
+                    Go Back
+                </NavLink>
+                </Button>
+            </div>
           </CardBody>
         </Card>
         </main>

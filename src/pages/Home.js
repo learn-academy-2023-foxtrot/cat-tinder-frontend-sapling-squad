@@ -12,7 +12,6 @@ const Home = () => {
             <h3 className="intro-sentence"> Hello, soil searchers! Your future plant partner is just a click away.</h3>
             <div className="logo-button">
                 <img src={Logo} alt="Logo for FloraFinder" className="home-logo"></img>
-                {/* <div className="home-buttons">  */}
                     <Button className="view-plants">
                         <NavLink to="./plants" className="button-text">
                             View Plants
@@ -23,7 +22,6 @@ const Home = () => {
                             Add a Plant
                         </NavLink>
                     </Button>
-                {/* </div> */}
             </div>
         </div>
         </body>

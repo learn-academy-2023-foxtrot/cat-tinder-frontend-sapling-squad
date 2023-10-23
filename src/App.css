@@ -59,15 +59,15 @@
   margin: auto;
 }
 
-/* Plant New Styling */
-.add-a-plant {
+/* Plant New Styling and Plant Edit Styling */
+.add-a-plant, .edit-plant {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.new-plant-form {
+.new-plant-form, .edit-form {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -88,3 +88,21 @@
   border: 2px solid;
   border-color: green;
 }
+
+.edit-button{
+  border: solid;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.edit-button-text, .back-edit-button{
+  text-decoration: none;
+  color: white;
+}
+
+.back-container{
+  text-align: center;
+}
+
+
