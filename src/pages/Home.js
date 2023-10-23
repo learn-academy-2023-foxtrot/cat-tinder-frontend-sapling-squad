@@ -12,16 +12,18 @@ const Home = () => {
             <h3 className="intro-sentence"> Hello, soil searchers! Your future plant partner is just a click away.</h3>
             <div className="logo-button">
                 <img src={Logo} alt="Logo for FloraFinder" className="home-logo"></img>
-                <button className="view-plants">
-                    <NavLink to="./plants" className="button-text">
-                        View Plants
-                    </NavLink>
-                </button>
-                <Button className="add-plant">
-                    <NavLink to="./plantsnew" className="button-text">
-                        Add a Plant
-                    </NavLink>
-                </Button>
+                {/* <div className="home-buttons">  */}
+                    <Button className="view-plants">
+                        <NavLink to="./plants" className="button-text">
+                            View Plants
+                        </NavLink>
+                    </Button>
+                    <Button className="add-plant">
+                        <NavLink to="./plantsnew" className="button-text">
+                            Add a Plant
+                        </NavLink>
+                    </Button>
+                {/* </div> */}
             </div>
         </div>
         </body>
